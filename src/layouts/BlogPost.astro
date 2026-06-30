@@ -1,0 +1,62 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  date: string;
+  icon: string;
+}
+
+const { title, description, date, icon } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title} — Pyris</title>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 2rem 1.25rem 4rem;
+        line-height: 1.7;
+        color: #1a1a1a;
+      }
+      .back { font-size: 0.875rem; color: #555; margin-bottom: 2rem; display: inline-block; }
+      .back:hover { color: #1D4ED8; }
+      .meta { font-size: 0.85rem; color: #666; margin-bottom: 0.5rem; }
+      h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); line-height: 1.2; margin-bottom: 0.75rem; }
+      .description { color: #444; margin-bottom: 2rem; font-size: 1.05rem; }
+      .body h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+      .body h3 { font-size: 1.15rem; margin: 1.75rem 0 0.5rem; }
+      .body p { margin-bottom: 1rem; }
+      .body ul, .body ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+      .body li { margin-bottom: 0.25rem; }
+      .body a { color: #1D4ED8; text-decoration: underline; }
+      .body strong { font-weight: 600; }
+      .body em { font-style: italic; }
+      .body img { max-width: 100%; border-radius: 4px; margin: 1.5rem 0; }
+      .body pre { background: #f4f4f4; padding: 1rem; border-radius: 4px; overflow-x: auto; margin-bottom: 1rem; }
+      .body code { font-size: 0.9em; background: #f0f0f0; padding: 0.1em 0.3em; border-radius: 2px; }
+      .body hr { border: none; border-top: 1px solid #e0e0e0; margin: 2rem 0; }
+      .body blockquote { border-left: 3px solid #ddd; padding-left: 1rem; color: #555; margin-bottom: 1rem; }
+    </style>
+  </head>
+  <body>
+    <a class="back" href="/">← All posts</a>
+    <div class="meta">
+      <span>{date}</span>
+      {icon && <span> · {icon}</span>}
+    </div>
+    <h1>{title}</h1>
+    <p class="description">{description}</p>
+    <hr />
+    <div class="body">
+      <slot />
+    </div>
+  </body>
+</html>
