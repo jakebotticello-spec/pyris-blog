@@ -16,7 +16,10 @@ const iconSvg = ICON_MAP[icon] ?? ICON_MAP['inventory'];
 <Base title={`${title} — From the Forge`} description={description} showForgeLink={true}>
   <div class="article-frame">
     <div class="blog-meta__row">
-      <span class="blog-meta__date">{date} • Jake Botticello</span>
+      <div class="blog-meta__left">
+        <span class="blog-meta__date">{date}</span>
+        <span class="blog-meta__author">Jake Botticello</span>
+      </div>
       <span class="blog-meta__icon" aria-hidden="true" set:html={iconSvg}></span>
     </div>
     <h1>{title}</h1>

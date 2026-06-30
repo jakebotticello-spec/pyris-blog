@@ -56,8 +56,36 @@ const { title, description = 'Practitioner-written guides on scaling operations,
     </main>
 
     <footer class="blog-footer">
-      <span>© Pyris Consulting 2026</span>
-      <a href="/">All Articles</a>
+      <div class="footer__inner">
+        <div class="footer__brand-col">
+          <div class="footer__brand">
+            <img src="/assets/logo.webp" alt="Pyris" class="footer__logo" width="32" height="32" />
+            <div class="footer__brand-name">Pyris <span>Consulting</span></div>
+          </div>
+          <p class="footer__tagline">Structure. Stability. Scalability.</p>
+        </div>
+        <div class="footer__links">
+          <div class="footer__col">
+            <div class="footer__col-title">Contact</div>
+            <ul>
+              <li><a href="mailto:jake@pyrisconsulting.com">jake@pyrisconsulting.com</a></li>
+              <li>
+                <a href="tel:+18777974726" class="phone-gradient">
+                  <span style="color:#DA1A16">877</span>-<span style="color:#E8430B">PYR</span><span style="color:#EC6A04">IS</span>-<span style="color:#EC6A04">CO</span>
+                </a>
+              </li>
+              <li><a href="tel:+18777974726" class="phone-numeric">(877-797-4726)</a></li>
+            </ul>
+          </div>
+          <div class="footer__col footer__col--qr">
+            <div class="qr-container">
+              <div class="qr-gradient" style="mask-image:url('/assets/qr.png');-webkit-mask-image:url('/assets/qr.png');mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat;mask-position:center;-webkit-mask-position:center;"></div>
+              <p class="qr-label">Scan to save contact</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom"><span>© 2026 Pyris Consulting. All rights reserved.</span></div>
     </footer>
 
     <!-- Mode toggle -->
