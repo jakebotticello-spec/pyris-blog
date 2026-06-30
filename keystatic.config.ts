@@ -22,14 +22,18 @@ export default config({
   collections: {
     posts: collection({
       label: 'Posts',
-      // Must be a fields.slug() field — keystatic-core-ui.js checks formKind === 'slug'
-      // when opening an entry and throws otherwise.
-      slugField: 'title',
+      // slugField MUST point to a fields.slug() field — keystatic-core-ui.js checks
+      // formKind === 'slug' when opening an entry and throws otherwise.
+      // Using 'slug' (not 'title') keeps the frontmatter `slug:` key as the single
+      // source of truth: serializeWithSlug writes value.name → frontmatter slug, and
+      // value.slug → filename. For URL-safe input these are identical, so
+      // post.data.slug === filename (no split-brain).
+      slugField: 'slug',
       path: 'src/content/posts/*',
       format: { contentField: 'content' },
       schema: {
-        title: fields.slug({ name: { label: 'Title' } }),
-        slug: fields.text({ label: 'Slug' }),
+        title: fields.text({ label: 'Title' }),
+        slug: fields.slug({ name: { label: 'Slug' } }),
         description: fields.text({ label: 'Description', multiline: true }),
         date: fields.date({ label: 'Date' }),
         icon: fields.text({ label: 'Icon (Material Icons name)' }),
