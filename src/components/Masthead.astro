@@ -1,4 +1,6 @@
 ---
+interface Props { showForgeLink?: boolean }
+const { showForgeLink = false } = Astro.props;
 ---
 <nav class="nav" aria-label="Site navigation">
   <div class="nav__brand">
@@ -9,6 +11,7 @@
   </div>
   <div class="nav__right">
     <nav class="nav__links" aria-label="Primary">
+      {showForgeLink && <a href="/" class="nav__link">FROM THE FORGE</a>}
       <div class="nav__dropdown" id="nav-dropdown">
         <button class="nav__dropdown-toggle" id="nav-dropdown-toggle" aria-expanded="false">
           <span class="nav__link-title">AI OPS ASSOCIATE</span>
@@ -37,6 +40,7 @@
       <img src="/assets/wordmark.webp" alt="Pyris Consulting" class="nav__mobile-wordmark" />
       <button class="nav__mobile-close" id="nav-close" aria-label="Close menu">✕</button>
     </div>
+    {showForgeLink && <a href="/" class="nav__mobile-link">From the Forge</a>}
     <span class="nav__mobile-grouplabel">AI Ops Associate</span>
     <a href="https://pyrisconsulting.com/audit/operations" class="nav__mobile-link nav__mobile-link--sub" target="_blank" rel="noopener">Operations Consult</a>
     <a href="https://pyrisconsulting.com/audit/ai-readiness" class="nav__mobile-link nav__mobile-link--sub" target="_blank" rel="noopener">AI Readiness Consult</a>

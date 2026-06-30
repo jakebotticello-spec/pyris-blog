@@ -5,9 +5,10 @@ import Masthead from '../components/Masthead.astro';
 interface Props {
   title: string;
   description?: string;
+  showForgeLink?: boolean;
 }
 
-const { title, description = 'Practitioner-written guides on scaling operations, implementing AI, and keeping systems from drifting.' } = Astro.props;
+const { title, description = 'Practitioner-written guides on scaling operations, implementing AI, and keeping systems from drifting.', showForgeLink = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -48,7 +49,7 @@ const { title, description = 'Practitioner-written guides on scaling operations,
     <!-- Forge watermark — rendered on index page via slot, hidden on article pages -->
     <slot name="watermark" />
 
-    <Masthead />
+    <Masthead showForgeLink={showForgeLink} />
 
     <main class="main-content">
       <slot />
