@@ -14,16 +14,14 @@ const posts = (await getCollection('posts')).sort(
     <img src="/assets/from-the-forge-logo.png" alt="" />
   </div>
 
-  <div class="hero__side-text" aria-hidden="true">PRACTITIONER FIELD NOTES</div>
+  <div class="hero__side-text" aria-hidden="true"><span class="shimmer-red-text">Pyris Consulting — Structure. Stability. Scalability.</span></div>
 
   <section class="blog-index__section">
     <div class="blog-index__inner">
-      <div class="blog-index__panel reveal">
-        <h1 class="blog-index__heading">
-          <span>FROM THE </span><span class="shimmer-text">FORGE</span>
-        </h1>
-        <p class="blog-index__sub">Pyris · Practitioner guides on operations, AI, and systems that don't drift.</p>
-      </div>
+      <h1 class="blog-index__heading reveal">
+        <span>FROM THE </span><span class="shimmer-text">FORGE</span>
+      </h1>
+      <p class="blog-index__sub">Operations, systems, and the infrastructure that lets founder-led businesses scale without the founder in the weeds. Practical thinking from the team at Pyris Consulting.</p>
 
       <div class="post-grid">
         {posts.map(post => {

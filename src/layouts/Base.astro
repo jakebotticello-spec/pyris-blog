@@ -128,6 +128,14 @@ const { title, description = 'Practitioner-written guides on scaling operations,
       }, { threshold: 0.1 });
       document.querySelectorAll(revealSelectors).forEach(el => revealObs.observe(el));
 
+      // ── Side-text scroll fade ──
+      const sideText = document.querySelector('.hero__side-text') as HTMLElement | null;
+      if (sideText) {
+        window.addEventListener('scroll', () => {
+          sideText.style.opacity = String(Math.max(0, 1 - window.scrollY / 600));
+        });
+      }
+
       // ── Canvas animations ──
       const ec = document.querySelector<HTMLCanvasElement>('.ember-canvas');
       if (ec) {
