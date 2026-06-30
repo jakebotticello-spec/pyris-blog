@@ -424,6 +424,8 @@ html.dark .nav__phoenix {
   background: rgba(194,212,234,0.4);
   background: color-mix(in srgb, var(--card) 40%, transparent);
   border: 1px solid var(--bdr);
+  border-top: 2px solid transparent;
+  border-image: linear-gradient(90deg, transparent, #E8430B, transparent) 1 0 0 0;
   padding: 1.5rem;
   transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
   text-decoration: none;
@@ -458,22 +460,8 @@ html.dark .post-card {
   font-size: 1rem; font-weight: 700;
   margin-bottom: 0.5rem;
   line-height: 1.3;
-  background: linear-gradient(90deg, #940122, #DA1A16);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--title-accent);
 }
-/* ── card stripe + title color cycle ── */
-.post-card:nth-child(5n+1) { border-top: 2px solid transparent; border-image: linear-gradient(90deg, transparent, #940122, #DA1A16, transparent) 1 0 0 0; }
-.post-card:nth-child(5n+2) { border-top: 2px solid transparent; border-image: linear-gradient(90deg, transparent, #DA1A16, #E8430B, transparent) 1 0 0 0; }
-.post-card:nth-child(5n+3) { border-top: 2px solid transparent; border-image: linear-gradient(90deg, transparent, #E8430B, #EC6A04, transparent) 1 0 0 0; }
-.post-card:nth-child(5n+4) { border-top: 2px solid transparent; border-image: linear-gradient(90deg, transparent, #DA1A16, #E8430B, transparent) 1 0 0 0; }
-.post-card:nth-child(5n)   { border-top: 2px solid transparent; border-image: linear-gradient(90deg, transparent, #940122, #DA1A16, transparent) 1 0 0 0; }
-.post-card:nth-child(5n+1) .post-card__title { background: linear-gradient(90deg, #940122, #DA1A16); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.post-card:nth-child(5n+2) .post-card__title { background: linear-gradient(90deg, #DA1A16, #E8430B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.post-card:nth-child(5n+3) .post-card__title { background: linear-gradient(90deg, #E8430B, #EC6A04); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.post-card:nth-child(5n+4) .post-card__title { background: linear-gradient(90deg, #DA1A16, #E8430B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.post-card:nth-child(5n)   .post-card__title { background: linear-gradient(90deg, #940122, #DA1A16); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .post-card__desc {
   font-family: 'Tenor Sans', serif;
   font-size: 0.9rem;
@@ -654,7 +642,7 @@ html.dark .post-card {
   flex-shrink: 0; color: var(--title-accent);
   display: flex; align-items: center;
 }
-.blog-meta__icon svg { width: 3.2rem; height: 3.2rem; display: block; transform: translateY(-10px); }
+.blog-meta__icon svg { width: 2.4rem; height: 2.4rem; display: block; }
 .article-description {
   font-size: 1.1rem; color: var(--s); margin-bottom: 2rem; line-height: 1.7;
 }
@@ -694,7 +682,7 @@ html.dark .post-card {
    ══════════════════════════════════════════════════════════════ */
 
 .hero__side-text {
-  position: fixed; left: max(730px, 82%); top: 20%;
+  position: fixed; left: max(730px, 86%); top: 20%;
   width: 0;
   transform: translateY(-50%) rotate(90deg); transform-origin: center center;
   font-family: 'Syne', sans-serif; font-size: 0.65vw; font-weight: 600;
