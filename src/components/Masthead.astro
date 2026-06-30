@@ -9,10 +9,16 @@
   </div>
   <div class="nav__right">
     <nav class="nav__links" aria-label="Primary">
-      <a href="/" class="nav__link nav__link--forge">
-        <span class="nav__link-title">FROM THE FORGE</span>
-        <span class="nav__link-sub">Pyris Blog</span>
-      </a>
+      <div class="nav__dropdown" id="nav-dropdown">
+        <button class="nav__dropdown-toggle" id="nav-dropdown-toggle" aria-expanded="false">
+          <span class="nav__link-title">AI OPS ASSOCIATE</span>
+          <span class="nav__dropdown-caret">▾</span>
+        </button>
+        <div class="nav__dropdown-panel" role="menu">
+          <a href="https://pyrisconsulting.com/audit/operations" class="nav__dropdown-link" role="menuitem" target="_blank" rel="noopener">Operations Consult</a>
+          <a href="https://pyrisconsulting.com/audit/ai-readiness" class="nav__dropdown-link" role="menuitem" target="_blank" rel="noopener">AI Readiness Consult</a>
+        </div>
+      </div>
       <a href="https://pyrisconsulting.com/" class="nav__link" target="_blank" rel="noopener">PYRIS HOME</a>
     </nav>
     <a href="https://pyrisconsulting.com/#contact" class="nav__cta-btn" target="_blank" rel="noopener">WORK WITH US</a>
@@ -23,15 +29,17 @@
   </div>
 </nav>
 
-<!-- Mobile overlay — hidden by default via `hidden` attribute -->
-<div class="nav__mobile-overlay" id="nav-mobile-overlay" hidden>
+<!-- Mobile overlay -->
+<div class="nav__mobile-overlay" id="nav-mobile-overlay">
   <div class="nav__mobile-overlay__backdrop" id="nav-backdrop"></div>
   <div class="nav__mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
     <div class="nav__mobile-header">
       <img src="/assets/wordmark.webp" alt="Pyris Consulting" class="nav__mobile-wordmark" />
       <button class="nav__mobile-close" id="nav-close" aria-label="Close menu">✕</button>
     </div>
-    <a href="/" class="nav__mobile-link">From the Forge</a>
+    <span class="nav__mobile-grouplabel">AI Ops Associate</span>
+    <a href="https://pyrisconsulting.com/audit/operations" class="nav__mobile-link nav__mobile-link--sub" target="_blank" rel="noopener">Operations Consult</a>
+    <a href="https://pyrisconsulting.com/audit/ai-readiness" class="nav__mobile-link nav__mobile-link--sub" target="_blank" rel="noopener">AI Readiness Consult</a>
     <a href="https://pyrisconsulting.com/" class="nav__mobile-link" target="_blank" rel="noopener">Pyris Home</a>
     <a href="https://pyrisconsulting.com/#contact" class="nav__mobile-cta" target="_blank" rel="noopener">Work With Us</a>
   </div>

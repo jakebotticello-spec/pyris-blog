@@ -94,12 +94,25 @@ const { title, description = 'Practitioner-written guides on scaling operations,
       const overlay = document.getElementById('nav-mobile-overlay');
       const closeBtn = document.getElementById('nav-close');
       const backdrop = document.getElementById('nav-backdrop');
-      const openMenu = () => { overlay?.removeAttribute('hidden'); hamburger?.setAttribute('aria-expanded', 'true'); };
-      const closeMenu = () => { overlay?.setAttribute('hidden', ''); hamburger?.setAttribute('aria-expanded', 'false'); };
+      const openMenu = () => { overlay?.classList.add('is-open'); hamburger?.setAttribute('aria-expanded', 'true'); };
+      const closeMenu = () => { overlay?.classList.remove('is-open'); hamburger?.setAttribute('aria-expanded', 'false'); };
       hamburger?.addEventListener('click', openMenu);
       closeBtn?.addEventListener('click', closeMenu);
       backdrop?.addEventListener('click', closeMenu);
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+      // ── Nav dropdown ──
+      const dropdown = document.getElementById('nav-dropdown');
+      const dropdownToggle = document.getElementById('nav-dropdown-toggle');
+      dropdownToggle?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = dropdown?.classList.toggle('is-open');
+        dropdownToggle.setAttribute('aria-expanded', String(!!isOpen));
+      });
+      document.addEventListener('click', () => {
+        dropdown?.classList.remove('is-open');
+        dropdownToggle?.setAttribute('aria-expanded', 'false');
+      });
 
       // ── Reveal observer ──
       const revealSelectors = '.reveal, .pop-reveal, .slide-reveal, .drop-reveal, .rise-reveal';
@@ -115,113 +128,109 @@ const { title, description = 'Practitioner-written guides on scaling operations,
       }, { threshold: 0.1 });
       document.querySelectorAll(revealSelectors).forEach(el => revealObs.observe(el));
 
-      // ── Canvas animations — gated on prefers-reduced-motion ──
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!prefersReduced) {
-        // Ember canvas
-        const ec = document.querySelector<HTMLCanvasElement>('.ember-canvas');
-        if (ec) {
-          const ctx = ec.getContext('2d')!;
-          let scrollY = 0;
-          const resize = () => { ec.width = window.innerWidth; ec.height = window.innerHeight; };
-          resize();
-          window.addEventListener('resize', resize);
-          window.addEventListener('scroll', () => { scrollY = window.scrollY; });
+      // ── Canvas animations ──
+      const ec = document.querySelector<HTMLCanvasElement>('.ember-canvas');
+      if (ec) {
+        const ctx = ec.getContext('2d')!;
+        let scrollY = 0;
+        const resize = () => { ec.width = window.innerWidth; ec.height = window.innerHeight; };
+        resize();
+        window.addEventListener('resize', resize);
+        window.addEventListener('scroll', () => { scrollY = window.scrollY; });
 
-          class Particle {
-            x = 0; y = 0; depth = 0; size = 0; speed = 0; drift = 0;
-            opacity = 0; flicker = 0; hue = 0; sat = 0; light = 0;
-            life = 0; decay = 0; parallaxFactor = 0;
-            constructor() { this.reset(); this.y = Math.random() * ec.height; }
-            reset() {
-              this.x = Math.random() * ec.width; this.y = ec.height + 10;
-              this.depth = Math.random();
-              this.size = 0.5 + this.depth * 2.5;
-              this.speed = 0.1 + this.depth * 0.5;
-              this.drift = (Math.random() - 0.5) * (0.2 + this.depth * 0.3);
-              this.opacity = 0.05 + this.depth * 0.4;
-              this.flicker = Math.random() * 0.008 + 0.002;
-              this.hue = Math.random() > 0.5 ? 20 : 10;
-              this.sat = 90 + Math.random() * 10;
-              this.light = 45 + Math.random() * 20;
-              this.life = 1;
-              this.decay = 0.0003 + (1 - this.depth) * 0.001;
-              this.parallaxFactor = 0.02 + this.depth * 0.33;
-            }
-            update() {
-              this.y -= this.speed;
-              this.x += this.drift + Math.sin(this.y * 0.006) * 0.1;
-              this.opacity += Math.sin(Date.now() * this.flicker) * 0.005;
-              this.life -= this.decay;
-              if (this.y < -10 || this.life <= 0) this.reset();
-            }
-            draw(c: CanvasRenderingContext2D, sy: number) {
-              const a = Math.max(0, Math.min(1, this.opacity * this.life));
-              const py = this.y - sy * this.parallaxFactor;
-              const g = c.createRadialGradient(this.x, py, 0, this.x, py, this.size * 3);
-              g.addColorStop(0, `hsla(${this.hue},${this.sat}%,${this.light}%,${a})`);
-              g.addColorStop(0.4, `hsla(${this.hue},${this.sat}%,${this.light * 0.7}%,${a * 0.35})`);
-              g.addColorStop(1, `hsla(${this.hue},${this.sat}%,${this.light * 0.3}%,0)`);
-              c.beginPath(); c.fillStyle = g;
-              c.arc(this.x, py, this.size * 3, 0, Math.PI * 2); c.fill();
-              c.beginPath(); c.fillStyle = `hsla(${this.hue},100%,80%,${a * 0.6})`;
-              c.arc(this.x, py, this.size * 0.35, 0, Math.PI * 2); c.fill();
-            }
+        class Particle {
+          x = 0; y = 0; depth = 0; size = 0; speed = 0; drift = 0;
+          opacity = 0; flicker = 0; hue = 0; sat = 0; light = 0;
+          life = 0; decay = 0; parallaxFactor = 0;
+          constructor() { this.reset(); this.y = Math.random() * ec.height; }
+          reset() {
+            this.x = Math.random() * ec.width; this.y = ec.height + 10;
+            this.depth = Math.random();
+            this.size = 0.5 + this.depth * 2.5;
+            this.speed = 0.1 + this.depth * 0.5;
+            this.drift = (Math.random() - 0.5) * (0.2 + this.depth * 0.3);
+            this.opacity = 0.05 + this.depth * 0.4;
+            this.flicker = Math.random() * 0.008 + 0.002;
+            this.hue = Math.random() > 0.5 ? 20 : 10;
+            this.sat = 90 + Math.random() * 10;
+            this.light = 45 + Math.random() * 20;
+            this.life = 1;
+            this.decay = 0.0003 + (1 - this.depth) * 0.001;
+            this.parallaxFactor = 0.02 + this.depth * 0.33;
           }
-
-          const particles: Particle[] = [];
-          for (let i = 0; i < 60; i++) particles.push(new Particle());
-          particles.sort((a, b) => a.depth - b.depth);
-          const emberLoop = () => {
-            ctx.clearRect(0, 0, ec.width, ec.height);
-            const sy = scrollY;
-            particles.forEach(p => { p.update(); p.draw(ctx, sy); });
-            requestAnimationFrame(emberLoop);
-          };
-          emberLoop();
+          update() {
+            this.y -= this.speed;
+            this.x += this.drift + Math.sin(this.y * 0.006) * 0.1;
+            this.opacity += Math.sin(Date.now() * this.flicker) * 0.005;
+            this.life -= this.decay;
+            if (this.y < -10 || this.life <= 0) this.reset();
+          }
+          draw(c: CanvasRenderingContext2D, sy: number) {
+            const a = Math.max(0, Math.min(1, this.opacity * this.life));
+            const py = this.y - sy * this.parallaxFactor;
+            const g = c.createRadialGradient(this.x, py, 0, this.x, py, this.size * 3);
+            g.addColorStop(0, `hsla(${this.hue},${this.sat}%,${this.light}%,${a})`);
+            g.addColorStop(0.4, `hsla(${this.hue},${this.sat}%,${this.light * 0.7}%,${a * 0.35})`);
+            g.addColorStop(1, `hsla(${this.hue},${this.sat}%,${this.light * 0.3}%,0)`);
+            c.beginPath(); c.fillStyle = g;
+            c.arc(this.x, py, this.size * 3, 0, Math.PI * 2); c.fill();
+            c.beginPath(); c.fillStyle = `hsla(${this.hue},100%,80%,${a * 0.6})`;
+            c.arc(this.x, py, this.size * 0.35, 0, Math.PI * 2); c.fill();
+          }
         }
 
-        // Cursor trail
-        const tc = document.querySelector<HTMLCanvasElement>('.cursor-trail');
-        if (tc) {
-          const tctx = tc.getContext('2d')!;
-          const resizeTrail = () => { tc.width = window.innerWidth; tc.height = window.innerHeight; };
-          resizeTrail();
-          window.addEventListener('resize', resizeTrail);
-          const mousePos = { x: -100, y: -100 };
-          const lastPos = { x: -100, y: -100 };
-          window.addEventListener('mousemove', (e) => { mousePos.x = e.clientX; mousePos.y = e.clientY; });
-          let frame = 0;
-          let trails: { x: number; y: number; size: number; life: number; hue: number }[] = [];
-          const trailLoop = () => {
-            tctx.clearRect(0, 0, tc.width, tc.height);
-            frame++;
-            const { x: mx, y: my } = mousePos;
-            const { x: lx, y: ly } = lastPos;
-            const moved = Math.abs(mx - lx) > 1 || Math.abs(my - ly) > 1;
-            if (frame % 3 === 0 && moved && mx > 0) {
-              trails.push({
-                x: mx + (Math.random() - 0.5) * 8,
-                y: my + (Math.random() - 0.5) * 8,
-                size: Math.random() * 2 + 1, life: 1,
-                hue: Math.random() > 0.5 ? 18 : 8,
-              });
-            }
-            lastPos.x = mx; lastPos.y = my;
-            trails = trails.filter(t => t.life > 0);
-            trails.forEach(t => {
-              t.life -= 0.025; t.y -= 0.4; t.x += (Math.random() - 0.5) * 0.3;
-              const a = t.life * 0.5;
-              const g = tctx.createRadialGradient(t.x, t.y, 0, t.x, t.y, t.size * 2);
-              g.addColorStop(0, `hsla(${t.hue},95%,55%,${a})`);
-              g.addColorStop(1, `hsla(${t.hue},95%,55%,0)`);
-              tctx.beginPath(); tctx.fillStyle = g;
-              tctx.arc(t.x, t.y, t.size * 2, 0, Math.PI * 2); tctx.fill();
+        const particles: Particle[] = [];
+        for (let i = 0; i < 60; i++) particles.push(new Particle());
+        particles.sort((a, b) => a.depth - b.depth);
+        const emberLoop = () => {
+          ctx.clearRect(0, 0, ec.width, ec.height);
+          const sy = scrollY;
+          particles.forEach(p => { p.update(); p.draw(ctx, sy); });
+          requestAnimationFrame(emberLoop);
+        };
+        emberLoop();
+      }
+
+      // Cursor trail
+      const tc = document.querySelector<HTMLCanvasElement>('.cursor-trail');
+      if (tc) {
+        const tctx = tc.getContext('2d')!;
+        const resizeTrail = () => { tc.width = window.innerWidth; tc.height = window.innerHeight; };
+        resizeTrail();
+        window.addEventListener('resize', resizeTrail);
+        const mousePos = { x: -100, y: -100 };
+        const lastPos = { x: -100, y: -100 };
+        window.addEventListener('mousemove', (e) => { mousePos.x = e.clientX; mousePos.y = e.clientY; });
+        let frame = 0;
+        let trails: { x: number; y: number; size: number; life: number; hue: number }[] = [];
+        const trailLoop = () => {
+          tctx.clearRect(0, 0, tc.width, tc.height);
+          frame++;
+          const { x: mx, y: my } = mousePos;
+          const { x: lx, y: ly } = lastPos;
+          const moved = Math.abs(mx - lx) > 1 || Math.abs(my - ly) > 1;
+          if (frame % 3 === 0 && moved && mx > 0) {
+            trails.push({
+              x: mx + (Math.random() - 0.5) * 8,
+              y: my + (Math.random() - 0.5) * 8,
+              size: Math.random() * 2 + 1, life: 1,
+              hue: Math.random() > 0.5 ? 18 : 8,
             });
-            requestAnimationFrame(trailLoop);
-          };
-          trailLoop();
-        }
+          }
+          lastPos.x = mx; lastPos.y = my;
+          trails = trails.filter(t => t.life > 0);
+          trails.forEach(t => {
+            t.life -= 0.025; t.y -= 0.4; t.x += (Math.random() - 0.5) * 0.3;
+            const a = t.life * 0.5;
+            const g = tctx.createRadialGradient(t.x, t.y, 0, t.x, t.y, t.size * 2);
+            g.addColorStop(0, `hsla(${t.hue},95%,55%,${a})`);
+            g.addColorStop(1, `hsla(${t.hue},95%,55%,0)`);
+            tctx.beginPath(); tctx.fillStyle = g;
+            tctx.arc(t.x, t.y, t.size * 2, 0, Math.PI * 2); tctx.fill();
+          });
+          requestAnimationFrame(trailLoop);
+        };
+        trailLoop();
       }
     </script>
   </body>

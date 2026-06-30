@@ -112,14 +112,21 @@ body {
 .rise-reveal { opacity: 0; transform: translateY(40px); transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1); }
 .rise-reveal--visible { opacity: 1; transform: translateY(0); }
 
-/* Reduced-motion: reveals end in visible state — never get stuck hidden */
-@media (prefers-reduced-motion: reduce) {
-  .reveal, .pop-reveal, .slide-reveal, .drop-reveal, .rise-reveal {
-    opacity: 1; transform: none; transition: none;
-  }
-  .mesh-blob--1, .mesh-blob--2, .mesh-blob--3 { animation: none; }
-  @keyframes ctaBtnPulse { 0%, 100% { box-shadow: 0 0 10px rgba(232,67,11,0.13); } }
-  @keyframes navLogoPulse { 0%, 100% { filter: drop-shadow(0 0 2px rgba(218, 26, 22, 0.05)); } }
+/* ══════════════════════════════════════════════════════════════
+   SHIMMER
+   ══════════════════════════════════════════════════════════════ */
+
+.shimmer-text {
+  background: linear-gradient(90deg, var(--a1), var(--a3), #FFC266, #D96800, var(--a1));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmerBg 3.5s ease-in-out infinite alternate;
+}
+@keyframes shimmerBg {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -178,6 +185,41 @@ html.dark .mode-toggle .icon-moon { display: none; }
   font-weight: 400; text-transform: none;
   letter-spacing: 0.12em; white-space: nowrap;
   opacity: 0.7;
+}
+
+/* Nav dropdown */
+.nav__dropdown { position: relative; display: flex; align-items: center; }
+.nav__dropdown-toggle {
+  background: none; border: none; cursor: pointer; padding: 0;
+  display: flex; flex-direction: column; align-items: center; line-height: 1.1;
+  font-family: 'Syne', sans-serif; font-size: clamp(0.65rem, 0.457rem + 0.286vw, 0.8rem); font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--m); transition: color 0.3s;
+}
+.nav__dropdown-toggle:hover { color: var(--a3); }
+.nav__dropdown-caret { font-size: 0.7em; }
+.nav__dropdown-panel {
+  position: absolute; top: 100%; left: 0;
+  display: none; flex-direction: column; min-width: 210px;
+  background: var(--nav-bg);
+  border: 1px solid rgba(127,127,127,0.25); border-radius: 6px;
+  padding: 0.4rem 0; z-index: 60;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+}
+.nav__dropdown:hover .nav__dropdown-panel,
+.nav__dropdown.is-open .nav__dropdown-panel { display: flex; }
+.nav__dropdown-link {
+  font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--m);
+  text-decoration: none; padding: 0.55rem 1.1rem; transition: color 0.2s;
+}
+.nav__dropdown-link:hover { color: var(--a3); }
+
+/* Mobile nav grouplabel */
+.nav__mobile-grouplabel {
+  font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--s); padding: 1rem 0 0.25rem; display: block;
 }
 
 /* Forge-mark logo wrap — 90px circle (light), pulse (dark) */
@@ -271,8 +313,9 @@ html.dark .nav__phoenix {
 /* Mobile overlay */
 .nav__mobile-overlay {
   position: fixed; inset: 0; z-index: 150;
-  display: flex; justify-content: flex-end;
+  display: none; justify-content: flex-end;
 }
+.nav__mobile-overlay.is-open { display: flex; }
 .nav__mobile-overlay__backdrop {
   position: absolute; inset: 0;
   background: rgba(0, 0, 0, 0.5);
@@ -342,14 +385,24 @@ html.dark .nav__phoenix {
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--lbl);
+  color: var(--h);
   margin-bottom: 0.5rem;
 }
 .blog-index__sub {
   font-family: 'Tenor Sans', serif;
   font-size: 1.05rem;
   color: var(--s);
+  margin-bottom: 0;
+}
+.blog-index__panel {
+  background: var(--card);
+  border: 1px solid var(--bdr);
+  border-top: 2px solid transparent;
+  border-image: linear-gradient(90deg, #DA1A16, #E8430B) 1;
+  border-image-slice: 1;
+  padding: 2rem 2.5rem;
   margin-bottom: 3rem;
+  display: inline-block;
 }
 .post-grid {
   display: grid;
@@ -360,13 +413,17 @@ html.dark .nav__phoenix {
 .post-card {
   background: var(--card);
   border: 1px solid var(--bdr);
+  border-top: 2px solid transparent;
+  border-image: linear-gradient(90deg, #DA1A16, #E8430B) 1;
+  border-image-slice: 1;
   padding: 1.5rem;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
   text-decoration: none;
   display: block;
 }
 .post-card:hover {
-  border-color: var(--a3);
+  border-color: var(--bdr-s);
+  background: var(--card-feat);
   box-shadow: 0 4px 20px rgba(232,67,11,0.08);
 }
 .post-card__meta {
@@ -387,12 +444,13 @@ html.dark .nav__phoenix {
 .post-card__title {
   font-family: 'Syne', sans-serif;
   font-size: 1rem; font-weight: 700;
-  color: var(--lbl);
   margin-bottom: 0.5rem;
   line-height: 1.3;
-  transition: color 0.3s;
+  background: linear-gradient(135deg, var(--a1), var(--a3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
-.post-card:hover .post-card__title { color: var(--a3); }
 .post-card__desc {
   font-family: 'Tenor Sans', serif;
   font-size: 0.9rem;
@@ -583,6 +641,21 @@ html.dark .nav__phoenix {
   color: var(--s); text-decoration: none; transition: color 0.3s;
 }
 .blog-footer a:hover { color: var(--a3); }
+
+/* ══════════════════════════════════════════════════════════════
+   SIDE-TEXT
+   ══════════════════════════════════════════════════════════════ */
+
+.hero__side-text {
+  position: fixed; left: max(730px, 82%); top: 20%;
+  width: 0;
+  transform: translateY(-50%) rotate(90deg); transform-origin: center center;
+  font-family: 'Syne', sans-serif; font-size: 0.65vw; font-weight: 600;
+  letter-spacing: 0.4em; text-transform: uppercase; white-space: nowrap;
+  color: var(--s);
+  z-index: 2; pointer-events: none;
+}
+@media (max-width: 1280px) { .hero__side-text { display: none; } }
 
 /* ══════════════════════════════════════════════════════════════
    RESPONSIVE

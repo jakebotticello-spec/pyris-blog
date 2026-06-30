@@ -14,10 +14,16 @@ const posts = (await getCollection('posts')).sort(
     <img src="/assets/from-the-forge-logo.png" alt="" />
   </div>
 
+  <div class="hero__side-text" aria-hidden="true">PRACTITIONER FIELD NOTES</div>
+
   <section class="blog-index__section">
     <div class="blog-index__inner">
-      <h1 class="blog-index__heading reveal">FROM THE FORGE</h1>
-      <p class="blog-index__sub reveal">Pyris · Practitioner guides on operations, AI, and systems that don't drift.</p>
+      <div class="blog-index__panel reveal">
+        <h1 class="blog-index__heading">
+          <span>FROM THE </span><span class="shimmer-text">FORGE</span>
+        </h1>
+        <p class="blog-index__sub">Pyris · Practitioner guides on operations, AI, and systems that don't drift.</p>
+      </div>
 
       <div class="post-grid">
         {posts.map(post => {
