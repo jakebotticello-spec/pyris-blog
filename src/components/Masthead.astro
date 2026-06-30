@@ -1,0 +1,38 @@
+---
+---
+<nav class="nav" aria-label="Site navigation">
+  <div class="nav__brand">
+    <div class="nav__logo-wrap">
+      <img src="/assets/from-the-forge-logo.png" alt="From the Forge" class="nav__logo" width="76" height="52" />
+    </div>
+    <img src="/assets/wordmark.webp" alt="Pyris Consulting" class="nav__wordmark" height="34" />
+  </div>
+  <div class="nav__right">
+    <nav class="nav__links" aria-label="Primary">
+      <a href="/" class="nav__link nav__link--forge">
+        <span class="nav__link-title">FROM THE FORGE</span>
+        <span class="nav__link-sub">Pyris Blog</span>
+      </a>
+      <a href="https://pyrisconsulting.com/" class="nav__link" target="_blank" rel="noopener">PYRIS HOME</a>
+    </nav>
+    <a href="https://pyrisconsulting.com/#contact" class="nav__cta-btn" target="_blank" rel="noopener">WORK WITH US</a>
+    <img src="/assets/logo.webp" alt="Pyris" class="nav__phoenix" width="52" height="52" />
+    <button class="nav__hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile overlay — hidden by default via `hidden` attribute -->
+<div class="nav__mobile-overlay" id="nav-mobile-overlay" hidden>
+  <div class="nav__mobile-overlay__backdrop" id="nav-backdrop"></div>
+  <div class="nav__mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <div class="nav__mobile-header">
+      <img src="/assets/wordmark.webp" alt="Pyris Consulting" class="nav__mobile-wordmark" />
+      <button class="nav__mobile-close" id="nav-close" aria-label="Close menu">✕</button>
+    </div>
+    <a href="/" class="nav__mobile-link">From the Forge</a>
+    <a href="https://pyrisconsulting.com/" class="nav__mobile-link" target="_blank" rel="noopener">Pyris Home</a>
+    <a href="https://pyrisconsulting.com/#contact" class="nav__mobile-cta" target="_blank" rel="noopener">Work With Us</a>
+  </div>
+</div>

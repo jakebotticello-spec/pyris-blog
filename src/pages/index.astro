@@ -1,53 +1,39 @@
 ---
 import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { ICON_MAP } from '../utils/icons';
 
 const posts = (await getCollection('posts')).sort(
   (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
 );
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Practitioner-written guides on scaling operations, implementing AI, and keeping systems from drifting." />
-    <title>From the Forge — Pyris</title>
-    <style>
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        max-width: 720px;
-        margin: 0 auto;
-        padding: 2rem 1.25rem 4rem;
-        line-height: 1.7;
-        color: #1a1a1a;
-      }
-      h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); margin-bottom: 0.5rem; }
-      .subtitle { color: #555; margin-bottom: 2.5rem; }
-      .post-list { list-style: none; display: flex; flex-direction: column; gap: 1.75rem; }
-      .post-card { border-bottom: 1px solid #eee; padding-bottom: 1.75rem; }
-      .post-card:last-child { border-bottom: none; }
-      .post-date { font-size: 0.8rem; color: #888; margin-bottom: 0.25rem; }
-      .post-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.4rem; }
-      .post-title a { color: inherit; text-decoration: none; }
-      .post-title a:hover { color: #1D4ED8; text-decoration: underline; }
-      .post-desc { color: #555; font-size: 0.95rem; }
-    </style>
-  </head>
-  <body>
-    <h1>From the Forge</h1>
-    <p class="subtitle">Pyris · Practitioner guides on operations, AI, and systems that don't drift.</p>
-    <ul class="post-list">
-      {posts.map(post => (
-        <li class="post-card">
-          <div class="post-date">{post.data.date}</div>
-          <div class="post-title">
-            <a href={`/${post.data.slug}/`}>{post.data.title}</a>
-          </div>
-          <p class="post-desc">{post.data.description}</p>
-        </li>
-      ))}
-    </ul>
-  </body>
-</html>
+<Base title="From the Forge — Pyris">
+  <!-- Forge watermark slot: fixed behind card grid, z-index 0 -->
+  <div class="blog-watermark" slot="watermark" aria-hidden="true">
+    <img src="/assets/from-the-forge-logo.png" alt="" />
+  </div>
+
+  <section class="blog-index__section">
+    <div class="blog-index__inner">
+      <h1 class="blog-index__heading reveal">FROM THE FORGE</h1>
+      <p class="blog-index__sub reveal">Pyris · Practitioner guides on operations, AI, and systems that don't drift.</p>
+
+      <div class="post-grid">
+        {posts.map(post => {
+          const iconSvg = ICON_MAP[post.data.icon] ?? ICON_MAP['inventory'];
+          return (
+            <a href={`/${post.data.slug}/`} class="post-card pop-reveal">
+              <div class="post-card__meta">
+                <span class="post-card__date">{post.data.date}</span>
+                <span class="post-card__icon" aria-hidden="true" set:html={iconSvg}></span>
+              </div>
+              <div class="post-card__title">{post.data.title}</div>
+              <p class="post-card__desc">{post.data.description}</p>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+</Base>

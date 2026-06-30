@@ -1,0 +1,228 @@
+---
+import '../styles/global.css';
+import Masthead from '../components/Masthead.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Practitioner-written guides on scaling operations, implementing AI, and keeping systems from drifting.' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Anti-FOUC: reads pyris-theme before stylesheet paints. Default = dark. -->
+    <script is:inline>
+      try {
+        var t = localStorage.getItem('pyris-theme');
+        if (!t || t === 'dark') document.documentElement.classList.add('dark');
+        else document.documentElement.classList.remove('dark');
+      } catch(e) {}
+    </script>
+
+    <!-- Google Fonts: Tenor Sans + Syne + Bevan (matches homepage three-face stack) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bevan&family=Syne:wght@400;500;600;700;800&family=Tenor+Sans&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Animated mesh background (CSS-animated, no JS required) -->
+    <div class="gradient-mesh" aria-hidden="true">
+      <div class="mesh-blob mesh-blob--1"></div>
+      <div class="mesh-blob mesh-blob--2"></div>
+      <div class="mesh-blob mesh-blob--3"></div>
+    </div>
+
+    <!-- Canvas layers populated by the site script below -->
+    <canvas class="ember-canvas" aria-hidden="true"></canvas>
+    <canvas class="cursor-trail" aria-hidden="true"></canvas>
+
+    <!-- Forge watermark — rendered on index page via slot, hidden on article pages -->
+    <slot name="watermark" />
+
+    <Masthead />
+
+    <main class="main-content">
+      <slot />
+    </main>
+
+    <footer class="blog-footer">
+      <span>© Pyris Consulting 2026</span>
+      <a href="/">All Articles</a>
+    </footer>
+
+    <!-- Mode toggle -->
+    <button class="mode-toggle" id="mode-toggle" aria-label="Toggle light/dark mode">
+      <!-- Sun icon (shown in dark mode) -->
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/>
+        <line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/>
+        <line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+      <!-- Moon icon (shown in light mode) -->
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+
+    <script>
+      // ── Mode toggle ──
+      const toggle = document.getElementById('mode-toggle');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const isDark = document.documentElement.classList.toggle('dark');
+          try { localStorage.setItem('pyris-theme', isDark ? 'dark' : 'light'); } catch(e) {}
+        });
+      }
+
+      // ── Mobile nav hamburger ──
+      const hamburger = document.getElementById('nav-hamburger');
+      const overlay = document.getElementById('nav-mobile-overlay');
+      const closeBtn = document.getElementById('nav-close');
+      const backdrop = document.getElementById('nav-backdrop');
+      const openMenu = () => { overlay?.removeAttribute('hidden'); hamburger?.setAttribute('aria-expanded', 'true'); };
+      const closeMenu = () => { overlay?.setAttribute('hidden', ''); hamburger?.setAttribute('aria-expanded', 'false'); };
+      hamburger?.addEventListener('click', openMenu);
+      closeBtn?.addEventListener('click', closeMenu);
+      backdrop?.addEventListener('click', closeMenu);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+      // ── Reveal observer ──
+      const revealSelectors = '.reveal, .pop-reveal, .slide-reveal, .drop-reveal, .rise-reveal';
+      const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          ['reveal','pop-reveal','slide-reveal','drop-reveal','rise-reveal'].forEach(cls => {
+            if (el.classList.contains(cls)) el.classList.add(`${cls}--visible`);
+          });
+          revealObs.unobserve(el);
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll(revealSelectors).forEach(el => revealObs.observe(el));
+
+      // ── Canvas animations — gated on prefers-reduced-motion ──
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReduced) {
+        // Ember canvas
+        const ec = document.querySelector<HTMLCanvasElement>('.ember-canvas');
+        if (ec) {
+          const ctx = ec.getContext('2d')!;
+          let scrollY = 0;
+          const resize = () => { ec.width = window.innerWidth; ec.height = window.innerHeight; };
+          resize();
+          window.addEventListener('resize', resize);
+          window.addEventListener('scroll', () => { scrollY = window.scrollY; });
+
+          class Particle {
+            x = 0; y = 0; depth = 0; size = 0; speed = 0; drift = 0;
+            opacity = 0; flicker = 0; hue = 0; sat = 0; light = 0;
+            life = 0; decay = 0; parallaxFactor = 0;
+            constructor() { this.reset(); this.y = Math.random() * ec.height; }
+            reset() {
+              this.x = Math.random() * ec.width; this.y = ec.height + 10;
+              this.depth = Math.random();
+              this.size = 0.5 + this.depth * 2.5;
+              this.speed = 0.1 + this.depth * 0.5;
+              this.drift = (Math.random() - 0.5) * (0.2 + this.depth * 0.3);
+              this.opacity = 0.05 + this.depth * 0.4;
+              this.flicker = Math.random() * 0.008 + 0.002;
+              this.hue = Math.random() > 0.5 ? 20 : 10;
+              this.sat = 90 + Math.random() * 10;
+              this.light = 45 + Math.random() * 20;
+              this.life = 1;
+              this.decay = 0.0003 + (1 - this.depth) * 0.001;
+              this.parallaxFactor = 0.02 + this.depth * 0.33;
+            }
+            update() {
+              this.y -= this.speed;
+              this.x += this.drift + Math.sin(this.y * 0.006) * 0.1;
+              this.opacity += Math.sin(Date.now() * this.flicker) * 0.005;
+              this.life -= this.decay;
+              if (this.y < -10 || this.life <= 0) this.reset();
+            }
+            draw(c: CanvasRenderingContext2D, sy: number) {
+              const a = Math.max(0, Math.min(1, this.opacity * this.life));
+              const py = this.y - sy * this.parallaxFactor;
+              const g = c.createRadialGradient(this.x, py, 0, this.x, py, this.size * 3);
+              g.addColorStop(0, `hsla(${this.hue},${this.sat}%,${this.light}%,${a})`);
+              g.addColorStop(0.4, `hsla(${this.hue},${this.sat}%,${this.light * 0.7}%,${a * 0.35})`);
+              g.addColorStop(1, `hsla(${this.hue},${this.sat}%,${this.light * 0.3}%,0)`);
+              c.beginPath(); c.fillStyle = g;
+              c.arc(this.x, py, this.size * 3, 0, Math.PI * 2); c.fill();
+              c.beginPath(); c.fillStyle = `hsla(${this.hue},100%,80%,${a * 0.6})`;
+              c.arc(this.x, py, this.size * 0.35, 0, Math.PI * 2); c.fill();
+            }
+          }
+
+          const particles: Particle[] = [];
+          for (let i = 0; i < 60; i++) particles.push(new Particle());
+          particles.sort((a, b) => a.depth - b.depth);
+          const emberLoop = () => {
+            ctx.clearRect(0, 0, ec.width, ec.height);
+            const sy = scrollY;
+            particles.forEach(p => { p.update(); p.draw(ctx, sy); });
+            requestAnimationFrame(emberLoop);
+          };
+          emberLoop();
+        }
+
+        // Cursor trail
+        const tc = document.querySelector<HTMLCanvasElement>('.cursor-trail');
+        if (tc) {
+          const tctx = tc.getContext('2d')!;
+          const resizeTrail = () => { tc.width = window.innerWidth; tc.height = window.innerHeight; };
+          resizeTrail();
+          window.addEventListener('resize', resizeTrail);
+          const mousePos = { x: -100, y: -100 };
+          const lastPos = { x: -100, y: -100 };
+          window.addEventListener('mousemove', (e) => { mousePos.x = e.clientX; mousePos.y = e.clientY; });
+          let frame = 0;
+          let trails: { x: number; y: number; size: number; life: number; hue: number }[] = [];
+          const trailLoop = () => {
+            tctx.clearRect(0, 0, tc.width, tc.height);
+            frame++;
+            const { x: mx, y: my } = mousePos;
+            const { x: lx, y: ly } = lastPos;
+            const moved = Math.abs(mx - lx) > 1 || Math.abs(my - ly) > 1;
+            if (frame % 3 === 0 && moved && mx > 0) {
+              trails.push({
+                x: mx + (Math.random() - 0.5) * 8,
+                y: my + (Math.random() - 0.5) * 8,
+                size: Math.random() * 2 + 1, life: 1,
+                hue: Math.random() > 0.5 ? 18 : 8,
+              });
+            }
+            lastPos.x = mx; lastPos.y = my;
+            trails = trails.filter(t => t.life > 0);
+            trails.forEach(t => {
+              t.life -= 0.025; t.y -= 0.4; t.x += (Math.random() - 0.5) * 0.3;
+              const a = t.life * 0.5;
+              const g = tctx.createRadialGradient(t.x, t.y, 0, t.x, t.y, t.size * 2);
+              g.addColorStop(0, `hsla(${t.hue},95%,55%,${a})`);
+              g.addColorStop(1, `hsla(${t.hue},95%,55%,0)`);
+              tctx.beginPath(); tctx.fillStyle = g;
+              tctx.arc(t.x, t.y, t.size * 2, 0, Math.PI * 2); tctx.fill();
+            });
+            requestAnimationFrame(trailLoop);
+          };
+          trailLoop();
+        }
+      }
+    </script>
+  </body>
+</html>
