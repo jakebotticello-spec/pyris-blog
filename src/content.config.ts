@@ -9,6 +9,7 @@ const posts = defineCollection({
     description: z.string(),
     date: z.string(),          // "YYYY-MM-DD" string — matches live file format
     icon: z.string(),          // Material Icons name, e.g. "inventory"
+    faq: z.array(z.object({ q: z.string(), a: z.string() })).optional(),
   }),
 });
 

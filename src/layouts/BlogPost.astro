@@ -7,13 +7,44 @@ interface Props {
   description: string;
   date: string;
   icon: string;
+  slug: string;
+  faq?: Array<{ q: string; a: string }>;
 }
 
-const { title, description, date, icon } = Astro.props;
+const { title, description, date, icon, slug, faq } = Astro.props;
 const iconSvg = ICON_MAP[icon] ?? ICON_MAP['inventory'];
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
+const imageURL = slug === 'build-log-1-cypher-auxiliary-brain'
+  ? new URL('/blog/astro-1.png', Astro.site).href
+  : null;
+
+const blogPosting = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  datePublished: date,
+  author: { '@type': 'Person', name: 'Jake Botticello' },
+  publisher: { '@type': 'Organization', name: 'Pyris Consulting' },
+  mainEntityOfPage: canonicalURL,
+  ...(imageURL ? { image: imageURL } : {}),
+};
+
+const faqSchema = faq && faq.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map(item => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+} : null;
 ---
 
 <Base title={`${title} — From the Forge`} description={description} showForgeLink={true}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(blogPosting)} />
+  {faqSchema && <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />}
   <div class="article-frame">
     <div class="blog-meta__row">
       <div class="blog-meta__left">

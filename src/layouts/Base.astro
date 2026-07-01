@@ -19,6 +19,8 @@ const { title, description = 'Practitioner-written guides on scaling operations,
     <meta name="description" content={description} />
     <title>{title}</title>
     <link rel="icon" href="/favicon.ico" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).href} />
+    <slot name="head" />
 
     <!-- Anti-FOUC: reads pyris-theme before stylesheet paints. Default = dark. -->
     <script is:inline>
