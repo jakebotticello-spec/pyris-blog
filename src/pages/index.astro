@@ -11,7 +11,7 @@ const posts = (await getCollection('posts')).sort(
 <Base title="From the Forge — Pyris">
   <!-- Forge watermark slot: fixed behind card grid, z-index 0 -->
   <div class="blog-watermark" slot="watermark" aria-hidden="true">
-    <img src="/assets/from-the-forge-logo.png" alt="" />
+    <img src="/blog/assets/from-the-forge-logo.png" alt="" />
   </div>
 
   <div class="hero__side-text" aria-hidden="true"><span class="shimmer-red-text">Pyris Consulting — Structure. Stability. Scalability.</span></div>
@@ -27,7 +27,7 @@ const posts = (await getCollection('posts')).sort(
         {posts.map(post => {
           const iconSvg = ICON_MAP[post.data.icon] ?? ICON_MAP['inventory'];
           return (
-            <a href={`/${post.data.slug}/`} class="post-card pop-reveal">
+            <a href={`/blog/${post.data.slug}/`} class="post-card pop-reveal">
               <div class="post-card__meta">
                 <span class="post-card__date">{post.data.date}</span>
                 <span class="post-card__icon" aria-hidden="true" set:html={iconSvg}></span>

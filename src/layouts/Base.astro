@@ -18,7 +18,7 @@ const { title, description = 'Practitioner-written guides on scaling operations,
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <title>{title}</title>
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/blog/favicon.ico" />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).href} />
     <slot name="head" />
 
@@ -61,7 +61,7 @@ const { title, description = 'Practitioner-written guides on scaling operations,
       <div class="footer__inner">
         <div class="footer__brand-col">
           <div class="footer__brand">
-            <img src="/assets/logo.webp" alt="Pyris" class="footer__logo" width="32" height="32" />
+            <img src="/blog/assets/logo.webp" alt="Pyris" class="footer__logo" width="32" height="32" />
             <div class="footer__brand-name">Pyris <span>Consulting</span></div>
           </div>
           <p class="footer__tagline">Structure. Stability. Scalability.</p>
@@ -81,7 +81,7 @@ const { title, description = 'Practitioner-written guides on scaling operations,
           </div>
           <div class="footer__col footer__col--qr">
             <div class="qr-container">
-              <div class="qr-gradient" style="mask-image:url('/assets/qr.png');-webkit-mask-image:url('/assets/qr.png');mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat;mask-position:center;-webkit-mask-position:center;"></div>
+              <div class="qr-gradient" style="mask-image:url('/blog/assets/qr.png');-webkit-mask-image:url('/blog/assets/qr.png');mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat;mask-position:center;-webkit-mask-position:center;"></div>
               <p class="qr-label">Scan to save contact</p>
             </div>
           </div>
