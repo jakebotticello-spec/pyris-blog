@@ -6,9 +6,9 @@ import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://pyris-blog.vercel.app',
+  site: 'https://pyrisconsulting.com',
   base: '/blog',
-  // Phase 5 cutover: change to https://pyrisconsulting.com (path-proxy serves /blog/)
+  // Phase 5 cutover DONE — site: flipped to apex; base:'/blog' stays (post-build script depends on it).
   // 'static' is the Astro 6 default: all pages prerendered; Keystatic's
   // auto-injected admin routes opt out with `prerender = false` internally.
   adapter: vercel(),
