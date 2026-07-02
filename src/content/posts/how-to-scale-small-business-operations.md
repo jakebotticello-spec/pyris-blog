@@ -30,7 +30,7 @@ This article is the full playbook for fixing that. Not "download our app" advice
 
 ## The $40K–$50K/Month Ceiling: Why Revenue Growth Stops Scaling
 
-There's a revenue band where founder-led service businesses get stuck so reliably it deserves its own name. Somewhere between $40K and $50K a month — roughly $500K to $600K a year — growth flattens. Not because demand dried up. Because the founder ran out of hours — there are only so many of those, and you've already mortgaged the ones marked "sleep."
+There's a revenue band where founder-led service businesses get stuck so reliably it deserves its own name. [Somewhere between $40K and $50K a month](https://pyrisconsulting.com/#faq-b3) — roughly $500K to $600K a year — growth flattens. Not because demand dried up. Because the founder ran out of hours — there are only so many of those, and you've already mortgaged the ones marked "sleep."
 
 Here's the mechanism. In the early days, doing everything yourself isn't a bug — it's the business model. You sell, you deliver, you invoice, you fix. Your personal hustle *is* the operations layer, and it works beautifully right up until it doesn't.
 
@@ -60,7 +60,7 @@ When growth stalls, most owners look outward first — pricing, marketing, compe
 
 7. **Hiring makes things worse before it makes them better.** New people take months to become useful because there's nothing to train them *on*. The knowledge transfer is you, talking, repeatedly.
 
-Count how many you nodded at. Three or more, and you don't have a growth problem — you have a systems problem wearing a growth problem's clothes. The good news: systems problems are the most fixable kind, because they respond to deliberate work instead of luck.
+Count how many you nodded at. Three or more, and you don't have a growth problem — you have [a systems problem wearing a growth problem's clothes](https://pyrisconsulting.com/#faq-b8). The good news: systems problems are the most fixable kind, because they respond to deliberate work instead of luck.
 
 <a id="systematizing-first"></a>
 
@@ -120,7 +120,7 @@ This map is the raw material for everything else. It tells you what to standardi
 
 ## The Pyris Operational Maturity Ladder
 
-After enough of these audits, a pattern emerges: every small business sits on one of four rungs of operational maturity. Knowing your rung tells you exactly what work comes next — and just as importantly, what work is premature.
+After enough of these audits, a pattern emerges: every small business sits on one of [four rungs of operational maturity](https://pyrisconsulting.com/#faq-b5). Knowing your rung tells you exactly what work comes next — and just as importantly, what work is premature.
 
 **Stage 1: Chaos.** Processes exist only as habits in people's heads. Communication is ad hoc (the group-text era). Quality depends on heroics. The founder is the operating system. *Tell-tale sign: every week feels like a brand-new emergency, starring the same three problems in new costumes.* The work at this stage is documentation — nothing fancier. You cannot skip to automation from here; there's nothing to automate.
 
@@ -148,7 +148,7 @@ Notice what that means structurally: **the operating system is still a person.**
 
 The plain-English version: **a fractional COO runs your operations; an operations architect builds operations that run themselves.**
 
-Which one do you need? It honestly depends on your stage. A genuinely complex organization with mature systems and a large team may need ongoing executive horsepower — that's COO territory. But a founder-led business stuck at the ceiling, with processes living in heads and a tech stack held together with duct tape, doesn't primarily need a better manager of the chaos. It needs the chaos converted into architecture. Buying management before building systems is renting a solution to a problem you could own the fix for — usually at two to four times the cost.
+[Which one do you need?](https://pyrisconsulting.com/#faq-b6) It honestly depends on your stage. A genuinely complex organization with mature systems and a large team may need ongoing executive horsepower — that's COO territory. But a founder-led business stuck at the ceiling, with processes living in heads and a tech stack held together with duct tape, doesn't primarily need a better manager of the chaos. It needs the chaos converted into architecture. Buying management before building systems is renting a solution to a problem you could own the fix for — usually at two to four times the cost.
 
 (Full disclosure, in case the framing didn't give it away: Pyris Consulting does the architect work. That's exactly why this distinction gets a whole section — it's the lens through which everything we build makes sense. We're biased. We're also right.)
 
@@ -190,7 +190,7 @@ The meta-rule underneath all of it: **buy ongoing management only for problems t
 
 ## How to Know Your Operations Are Ready to Scale
 
-Scaling readiness isn't a feeling — it's a checklist. Before you pour fuel on growth (more marketing spend, more hires, bigger clients), your operations should pass an honest audit. Run your business against these twelve questions. Answer yes or no — "mostly" is a no, and you know it.
+[Scaling readiness isn't a feeling — it's a checklist](https://pyrisconsulting.com/#faq-b8). Before you pour fuel on growth (more marketing spend, more hires, bigger clients), your operations should pass an honest audit. Run your business against these twelve questions. Answer yes or no — "mostly" is a no, and you know it.
 
 1. Could the business deliver its core service for two weeks without the founder touching operations?
 2. Are your five most important processes documented well enough that a competent new hire could follow them?

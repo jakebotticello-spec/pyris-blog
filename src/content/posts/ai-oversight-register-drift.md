@@ -8,7 +8,7 @@ icon: "content_paste_search"
 
 There's a failure mode in AI that nobody warns you about at the demo, because it doesn't look like a failure. Nothing crashes. No error pops. The agent you set up last spring is still running, still confident, still spitting out answers in the same tone it always has. It's just… a little more wrong every month. And by the time a client notices, the wrong has been compounding for two quarters.
 
-That's drift. And if you read [our guide on implementing AI in small business](/blog/how-to-implement-ai-in-small-business/), you already met it as the last and least-glamorous stage of the method — the spring climb up the treehouse to check the joints. This is the article that climbs all the way up. Because drift is the part of AI that the rest of the internet treats as a footnote, and it's the part that actually decides whether your AI still works in eighteen months.
+[That's drift](https://pyrisconsulting.com/#faq-c6). And if you read [our guide on implementing AI in small business](/blog/how-to-implement-ai-in-small-business/), you already met it as the last and least-glamorous stage of the method — the spring climb up the treehouse to check the joints. This is the article that climbs all the way up. Because drift is the part of AI that the rest of the internet treats as a footnote, and it's the part that actually decides whether your AI still works in eighteen months.
 
 Here's the thing most people miss, though, and it's the reason this article matters more than a footnote: **AI drift isn't a new problem. It's an old problem that got faster.**
 
@@ -65,7 +65,7 @@ It is deliberately unglamorous. It does not require an enterprise compliance dep
 
 ## The Four Columns (and the Two Tools Nobody Approved)
 
-Open a blank document. Make a table with four columns. Here's what goes in each, and what you'll learn the first time you fill it out.
+Open a blank document. [Make a table with four columns](https://pyrisconsulting.com/#faq-c7). Here's what goes in each, and what you'll learn the first time you fill it out.
 
 | The Agent / Tool | Who Uses It | Which SOP Governs It | How It's Checked |
 |---|---|---|---|
@@ -105,7 +105,7 @@ We run a live intake agent on our own site — [Cyris](https://pyrisconsulting.c
 
 We've trained agents on client SOPs, and we've seen the failure mode the AI guide describes as a hypothetical play out for real: train an agent on a process that's subtly wrong, and it doesn't make a subtly wrong decision once — it makes it *flawlessly, every time, with total confidence,* until someone catches it. A human taught a bad process eventually pushes back. An agent taught a bad process just gets very good at being wrong. The only defense that ever worked was the register: knowing exactly which SOP governed which agent, so that when we fixed the SOP, we knew precisely what to retrain.
 
-The reason we can write about drift with this much conviction is that we've spent serious time on the far end of the problem — building ourselves an institutional memory system whose entire job is making sure our own agents never operate on a stale instruction. We call it Cypher: an auxiliary brain that holds the reasoning behind decisions verbatim, catches the patterns no single person is positioned to see, and surfaces them to the human who owns the call. Critically — and this is the founding principle, not a feature we bolted on — **it surfaces, it never rules.** It brings the human the pattern and stops. The human decides. Always. That wall is the whole reason a system like that is safe to let into a business: there's no machine making the accountable call, no judgment to audit, no wheel taken. An advisor that never takes the wheel.
+The reason we can write about drift with this much conviction is that we've spent serious time on the far end of the problem — building ourselves an institutional memory system whose entire job is making sure our own agents never operate on a stale instruction. We call it Cypher: an auxiliary brain that holds the reasoning behind decisions verbatim, catches the patterns no single person is positioned to see, and surfaces them to the human who owns the call. Critically — and this is the founding principle, not a feature we bolted on — **[it surfaces, it never rules](https://pyrisconsulting.com/#faq-c7).** It brings the human the pattern and stops. The human decides. Always. That wall is the whole reason a system like that is safe to let into a business: there's no machine making the accountable call, no judgment to audit, no wheel taken. An advisor that never takes the wheel.
 
 That's the machine we're building for the hard version of this problem — institutional memory that catches drift before it costs you, both the fast agent kind *and* the slow, live-in-the-business kind: the SOP that went out of true, the why that left with the person.
 

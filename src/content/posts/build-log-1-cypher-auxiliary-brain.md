@@ -77,7 +77,7 @@ This is the part I care about most, and it's not a feature we bolted on for safe
 
 **Cypher does not decide.** It doesn't approve, it doesn't recommend-as-truth, it doesn't take accountability for a call. It brings the pattern to the human who owns the decision and it stops there. The human decides. Always.
 
-That's not a limitation. It's the entire reason a system like this is safe to let into a business. There's no accountable machine in the loop, no liability transfer, no automated judgment you'd have to audit. An advisor that never takes the wheel. The org's accountability stays exactly where it legally and culturally has to.
+That's not a limitation. It's the entire reason a system like this is safe to let into a business. There's no accountable machine in the loop, no liability transfer, no automated judgment you'd have to audit. [An advisor that never takes the wheel](https://pyrisconsulting.com/#faq-c7). The org's accountability stays exactly where it legally and culturally has to.
 
 Most of the industry is racing the other direction, toward AI that decides, because deciding demos better. I think they're all building toward a wall they'll eventually hit. We started on the other side of it.
 
@@ -97,7 +97,7 @@ I'm not going to pretend the picture *is* the product — it's a visualization, 
 
 ## Why We're Building Our Own First
 
-We build systems for clients. We also build them for ourselves — and we build ours first, on purpose, because we refuse to sell a thing we haven't run in our own shop under real conditions. Cypher is the institutional memory *we* wanted: something that holds the reasoning behind everything we've built, catches the patterns across our own work that no single project window can see, and makes sure our own agents never drift onto a stale instruction. We're our own first hard test case.
+We build systems for clients. We also build them for ourselves — and we build ours first, on purpose, because we refuse to sell a thing we haven't run in our own shop under real conditions. Cypher is the institutional memory *we* wanted: something that holds the reasoning behind everything we've built, catches the patterns across our own work that no single project window can see, and makes sure our own agents never [drift onto a stale instruction](https://pyrisconsulting.com/#faq-c6). We're our own first hard test case.
 
 Where it goes from here — whether the single-subject version becomes the org-scale version, on what timeline — is genuinely still being figured out. It's a big idea on paper that's earning its way into being real one proven layer at a time. It's one of those projects whose architecture has to be torn apart and put back together repeatedly at every step, *because it's new ground*. That's the honest status, and I'd rather give you the honest status than the pitch.
 

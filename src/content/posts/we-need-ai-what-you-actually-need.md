@@ -49,7 +49,7 @@ When you start from the workflow, three things happen automatically that never h
 
 When the "we need AI" feeling hits, run these three questions instead. They take an afternoon and they save you from the expensive version of finding out.
 
-**1. What is the single most expensive way our work currently moves?** Not the most annoying — the most *expensive*, in hours, errors, delays, or deals lost. Quote turnaround taking six days. Onboarding docs reworked one in five times. Status updates eating an hour of everyone's morning. Find the load before you shop for the lift.
+**1. [What is the single most expensive way our work currently moves?](https://pyrisconsulting.com/#faq-a14-applied)** Not the most annoying — the most *expensive*, in hours, errors, delays, or deals lost. Quote turnaround taking six days. Onboarding docs reworked one in five times. Status updates eating an hour of everyone's morning. Find the load before you shop for the lift.
 
 **2. Why is it expensive — is it the process, or the volume?** This is the fork. If the process itself is broken — unclear, undocumented, no owner — then no tool fixes it; you fix the process first, and *maybe* automate the result. If the process is sound but the *volume* is crushing you — same task, correctly done, just too many times for humans to keep up — *that's* where automation, and sometimes AI specifically, earns its keep. Most "we need AI" panics are actually process problems wearing a technology costume.
 
@@ -67,7 +67,7 @@ Half the confusion in this whole conversation is vocabulary. People say "AI" whe
 
 **AI** is the subset of tools that handle the work automation can't define cleanly in advance — drafting from context, summarizing messy input, answering open-ended questions, reading a document and pulling out what matters. It's genuinely powerful for the fuzzy, judgment-flavored work. It is *overkill, and often worse,* for work that plain automation already handles deterministically.
 
-**The right tool** is whichever of those actually fits the job you identified in the three questions. Sometimes that's an AI agent. Frequently it's an automation with zero AI in it. Occasionally it's neither — it's a process fix and a clear owner. The entire skill is matching the tool to the job, which you can only do *after* you've named the job.
+**The right tool** is whichever of those actually fits the job you identified in the three questions. Sometimes that's an AI agent. Frequently it's an automation with zero AI in it. Occasionally it's neither — it's a process fix and a clear owner. The entire skill is [matching the tool to the job](https://pyrisconsulting.com/#faq-c4), which you can only do *after* you've named the job.
 
 "We need AI" collapses all three into one panicked purchase. "We need to fix how quotes move, and the right tool for the volume problem turns out to be an AI drafting step wired into our existing CRM" — that's a plan. Longer sentence. Much cheaper outcome.
 
@@ -85,7 +85,7 @@ The ones who lost bought "AI" — the meal as advertised on the box — bolted i
 
 So the next time "we need AI" forms at 11pm, replace it with the sentence that actually works: *"What's the most expensive way our work moves, why is it expensive, and what would fixed look like?"*
 
-Answer that, and you'll either find a workflow worth automating — at which point AI might be exactly the right tool, applied with a target and a yardstick — or you'll find a process worth fixing, and save yourself a subscription you'd have abandoned by spring. Both are wins. Both start from the work, not the tool.
+Answer that, and you'll either find a workflow worth automating — at which point AI might be exactly the right tool, applied with a target and a yardstick — or you'll find a process worth fixing, and save yourself a subscription you'd have abandoned by spring. Both are wins. Both [start from the work, not the tool](https://pyrisconsulting.com/#faq-c1).
 
 That's the difference between the 5% and the 95%. Not the AI. The sentence.
 

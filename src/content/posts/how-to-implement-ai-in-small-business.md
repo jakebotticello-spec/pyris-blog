@@ -10,7 +10,7 @@ My father had a line he'd deploy any time I reached for the wrong tool: *"Use th
 
 Thirty-some years later, I watch businesses do the opposite with AI every single week. They buy the lumber first — the chatbot, the agent platform, the automation suite — nail it to whatever branch is closest, and then stand back wondering why the floor's crooked.
 
-Here's the thesis, and it's the same one that runs through everything we build: **AI alone doesn't fix a business.** It's a tool — a genuinely remarkable one — that only pays off as part of a bigger solution built around how your business actually works. If you've read our pillar guide on [how to scale small business operations](/blog/how-to-scale-small-business-operations/), you already know the doctrine: process first, then technology. AI doesn't get an exemption from that rule. If anything, AI punishes you *harder* for skipping it.
+Here's the thesis, and it's the same one that runs through everything we build: **[AI alone doesn't fix a business.](https://pyrisconsulting.com/#faq-c2)** It's a tool — a genuinely remarkable one — that only pays off as part of a bigger solution built around how your business actually works. If you've read our pillar guide on [how to scale small business operations](/blog/how-to-scale-small-business-operations/), you already know the doctrine: process first, then technology. AI doesn't get an exemption from that rule. If anything, AI punishes you *harder* for skipping it.
 
 So this is the method, in my father's three words: **Measure, Cut, Build.** Measure the tree. Cut to fit. Build it — and keep climbing up to check the joints. If you'd rather start by measuring, **[meet Cyris, our AI Operations Associate, and run your readiness consultation](https://pyrisconsulting.com/audit/ai-readiness)** — then come back for the method behind the numbers.
 
@@ -31,7 +31,7 @@ So this is the method, in my father's three words: **Measure, Cut, Build.** Meas
 
 ## Why Does AI Adoption Fail in Small Business? (It's Not the AI)
 
-AI adoption fails primarily because nobody redesigns the workflow around the tool — not because the AI is weak. Businesses bolt AI onto undefined processes, skip baseline measurement, and never establish oversight, so the tool has no defined job, no yardstick, and no maintenance. The technology gets blamed for a planning failure.
+AI adoption fails primarily because [nobody redesigns the workflow around the tool](https://pyrisconsulting.com/#faq-c3) — not because the AI is weak. Businesses bolt AI onto undefined processes, skip baseline measurement, and never establish oversight, so the tool has no defined job, no yardstick, and no maintenance. The technology gets blamed for a planning failure.
 
 The numbers on this are genuinely brutal:
 
@@ -63,7 +63,7 @@ The output of Stage 1 is a map of the real work and — critically — the numbe
 
 ## How to Run an AI Readiness Assessment (and Set Your Pre-AI Benchmarks)
 
-An AI readiness assessment answers two questions: *is this business prepared to implement AI successfully,* and *what do our key processes cost us today?* That second half — the baseline — is the step nearly every business skips, and skipping it is why they can never prove their AI worked. Here's the practitioner's version:
+An AI readiness assessment answers two questions: *is this business prepared to implement AI successfully,* and *[what do our key processes cost us today?](https://pyrisconsulting.com/#faq-a14-applied)* That second half — the baseline — is the step nearly every business skips, and skipping it is why they can never prove their AI worked. Here's the practitioner's version:
 
 1. **Inventory your core processes.** Same list as any operations audit: lead handling, sales, onboarding, delivery, communication, invoicing. Five to eight big rivers.
 
